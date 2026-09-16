@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.7.1" version="1.0">
+  <lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#Base" name="6"/>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+    <a name="tickmain" val="half"/>
+  </options>
+  <mappings>
+    <tool lib="6" map="Button2" name="Menu Tool"/>
+    <tool lib="6" map="Button3" name="Menu Tool"/>
+    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="6" name="Poke Tool"/>
+    <tool lib="6" name="Edit Tool"/>
+    <tool lib="6" name="Text Tool"/>
+    <tool lib="6" name="Color Picker Tool"/>
+    <tool lib="6" name="Hand Tool"/>
+    <tool lib="6" name="Move Tool"/>
+    <tool lib="6" name="Selection Tool"/>
+    <tool lib="6" name="Wiring Tool"/>
+    <tool lib="6" name="Deletion Tool"/>
+    <tool lib="6" name="Rectangle Select Tool"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="appearance" val="logisimEvolution"/>
+    <a name="circuit" val="main"/>
+    <a name="clocked" val="true"/>
+    <a name="clocks" val=""/>
+    <a name="clockspeed" val="1.0"/>
+    <a name="label" val="RELOJ DIGITAL"/>
+    <a name="labelfont" val="SansSerif,16"/>
+    <a name="labelloc" val="north"/>
+    <a name="negate" val="false"/>
+    <a name="simulateVerilog" val="0"/>
+    <a name="simulateVerilogFile" val=""/>
+    <a name="tickCountdown" val=""/>
+    <a name="tickCountdownEnabled" val="false"/>
+    <comment>Reloj Digital 24 Horas con Flip-Flops
+Estructura modular con contadores de:
+- Segundos (0-59)
+- Minutos (0-59)  
+- Horas (0-23)</comment>
+    
+    <!-- ENTRADAS -->
+    <comp lib="5" loc="(50,100)" name="Clock">
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="5" loc="(50,150)" name="Button">
+      <a name="label" val="RESET"/>
+    </comp>
+    
+    <!-- TITULO -->
+    <comp lib="5" loc="(300,50)" name="Text">
+      <a name="text" val="HH:MM:SS"/>
+      <a name="font" val="SansSerif,24"/>
+    </comp>
+    
+    <!-- DISPLAYS DE SALIDA -->
+    <comp lib="5" loc="(650,100)" name="Hex Digit Display">
+      <a name="label" val="Horas Decena"/>
+    </comp>
+    <comp lib="5" loc="(720,100)" name="Hex Digit Display">
+      <a name="label" val="Horas Unidad"/>
+    </comp>
+    <comp lib="5" loc="(650,180)" name="Hex Digit Display">
+      <a name="label" val="Minutos Decena"/>
+    </comp>
+    <comp lib="5" loc="(720,180)" name="Hex Digit Display">
+      <a name="label" val="Minutos Unidad"/>
+    </comp>
+    <comp lib="5" loc="(650,260)" name="Hex Digit Display">
+      <a name="label" val="Segundos Decena"/>
+    </comp>
+    <comp lib="5" loc="(720,260)" name="Hex Digit Display">
+      <a name="label" val="Segundos Unidad"/>
+    </comp>
+    
+    <!-- ETIQUETAS -->
+    <comp lib="5" loc="(600,100)" name="Label">
+      <a name="text" val="HH"/>
+    </comp>
+    <comp lib="5" loc="(600,180)" name="Label">
+      <a name="text" val="MM"/>
+    </comp>
+    <comp lib="5" loc="(600,260)" name="Label">
+      <a name="text" val="SS"/>
+    </comp>
+    
+    <!-- CONTADOR SEGUNDOS - 0 a 59 -->
+    <comp lib="4" loc="(200,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF0"/>
+    </comp>
+    <comp lib="4" loc="(250,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF1"/>
+    </comp>
+    <comp lib="4" loc="(300,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF2"/>
+    </comp>
+    <comp lib="4" loc="(350,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF3"/>
+    </comp>
+    <comp lib="4" loc="(400,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF4"/>
+    </comp>
+    <comp lib="4" loc="(450,100)" name="J-K Flip-Flop">
+      <a name="label" val="SS_FF5"/>
+    </comp>
+    
+    <!-- CONTADOR MINUTOS - 0 a 59 -->
+    <comp lib="4" loc="(200,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF0"/>
+    </comp>
+    <comp lib="4" loc="(250,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF1"/>
+    </comp>
+    <comp lib="4" loc="(300,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF2"/>
+    </comp>
+    <comp lib="4" loc="(350,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF3"/>
+    </comp>
+    <comp lib="4" loc="(400,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF4"/>
+    </comp>
+    <comp lib="4" loc="(450,180)" name="J-K Flip-Flop">
+      <a name="label" val="MM_FF5"/>
+    </comp>
+    
+    <!-- CONTADOR HORAS - 0 a 23 -->
+    <comp lib="4" loc="(200,260)" name="J-K Flip-Flop">
+      <a name="label" val="HH_FF0"/>
+    </comp>
+    <comp lib="4" loc="(250,260)" name="J-K Flip-Flop">
+      <a name="label" val="HH_FF1"/>
+    </comp>
+    <comp lib="4" loc="(300,260)" name="J-K Flip-Flop">
+      <a name="label" val="HH_FF2"/>
+    </comp>
+    <comp lib="4" loc="(350,260)" name="J-K Flip-Flop">
+      <a name="label" val="HH_FF3"/>
+    </comp>
+    <comp lib="4" loc="(400,260)" name="J-K Flip-Flop">
+      <a name="label" val="HH_FF4"/>
+    </comp>
+    
+    <!-- DECODIFICADOR PARA DETECTAR 59 (SEGUNDOS Y MINUTOS) -->
+    <comp lib="1" loc="(520,100)" name="AND Gate">
+      <a name="inputs" val="6"/>
+      <a name="label" val="Detect SS=59"/>
+    </comp>
+    <comp lib="1" loc="(520,180)" name="AND Gate">
+      <a name="inputs" val="6"/>
+      <a name="label" val="Detect MM=59"/>
+    </comp>
+    
+    <!-- DECODIFICADOR PARA DETECTAR 23 (HORAS) -->
+    <comp lib="1" loc="(480,260)" name="AND Gate">
+      <a name="inputs" val="5"/>
+      <a name="label" val="Detect HH=23"/>
+    </comp>
+    
+    <!-- LÓGICA DE CARRY (PROPAGACIÓN DE ACARREO) -->
+    <comp lib="1" loc="(570,130)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="Carry SS→MM"/>
+    </comp>
+    <comp lib="1" loc="(570,210)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="Carry MM→HH"/>
+    </comp>
+    
+    <!-- LÓGICA DE RESET GLOBAL -->
+    <comp lib="1" loc="(600,280)" name="AND Gate">
+      <a name="inputs" val="3"/>
+      <a name="label" val="Reset Global"/>
+    </comp>
+    
+    <!-- CONEXIONES DE CLOCK -->
+    <wire from="(50,100)" to="(120,100)"/>
+    <wire from="(120,100)" to="(120,200)"/>
+    <wire from="(120,200)" to="(200,100)"/>
+    <wire from="(120,200)" to="(200,180)"/>
+    <wire from="(120,200)" to="(200,260)"/>
+    
+    <!-- CONEXIONES ENTRE FLIP-FLOPS DE CASCADA -->
+    <!-- Segundos -->
+    <wire from="(215,100)" to="(230,100)"/>
+    <wire from="(265,100)" to="(280,100)"/>
+    <wire from="(315,100)" to="(330,100)"/>
+    <wire from="(365,100)" to="(380,100)"/>
+    <wire from="(415,100)" to="(430,100)"/>
+    
+    <!-- Minutos -->
+    <wire from="(215,180)" to="(230,180)"/>
+    <wire from="(265,180)" to="(280,180)"/>
+    <wire from="(315,180)" to="(330,180)"/>
+    <wire from="(365,180)" to="(380,180)"/>
+    <wire from="(415,180)" to="(430,180)"/>
+    
+    <!-- Horas -->
+    <wire from="(215,260)" to="(230,260)"/>
+    <wire from="(265,260)" to="(280,260)"/>
+    <wire from="(315,260)" to="(330,260)"/>
+    <wire from="(365,260)" to="(380,260)"/>
+    
+    <!-- CONEXIONES A DECODIFICADORES -->
+    <!-- Segundos a detector 59 -->
+    <wire from="(465,100)" to="(490,100)"/>
+    <wire from="(450,100)" to="(490,110)"/>
+    <wire from="(400,100)" to="(490,120)"/>
+    <wire from="(350,100)" to="(490,130)"/>
+    <wire from="(300,100)" to="(490,140)"/>
+    <wire from="(250,100)" to="(490,150)"/>
+    
+    <!-- Minutos a detector 59 -->
+    <wire from="(465,180)" to="(490,180)"/>
+    <wire from="(450,180)" to="(490,190)"/>
+    <wire from="(400,180)" to="(490,200)"/>
+    <wire from="(350,180)" to="(490,210)"/>
+    <wire from="(300,180)" to="(490,220)"/>
+    <wire from="(250,180)" to="(490,230)"/>
+    
+    <!-- Horas a detector 23 -->
+    <wire from="(415,260)" to="(450,260)"/>
+    <wire from="(400,260)" to="(450,270)"/>
+    <wire from="(350,260)" to="(450,280)"/>
+    <wire from="(300,260)" to="(450,290)"/>
+    <wire from="(250,260)" to="(450,300)"/>
+    
+    <!-- CARRY: SS→MM -->
+    <wire from="(530,100)" to="(550,130)"/>
+    <wire from="(550,130)" to="(550,180)"/>
+    <wire from="(550,180)" to="(200,180)"/>
+    
+    <!-- CARRY: MM→HH -->
+    <wire from="(530,180)" to="(560,210)"/>
+    <wire from="(560,210)" to="(560,260)"/>
+    <wire from="(560,260)" to="(200,260)"/>
+    
+    <!-- RESET GLOBAL -->
+    <wire from="(530,100)" to="(580,280)"/>
+    <wire from="(530,180)" to="(580,290)"/>
+    <wire from="(490,260)" to="(580,300)"/>
+    <wire from="(610,280)" to="(630,280)"/>
+    <wire from="(630,280)" to="(630,200)"/>
+    
+    <!-- CONEXIONES A DISPLAYS -->
+    <!-- Segundos Unidad -->
+    <wire from="(215,100)" to="(640,100)"/>
+    <wire from="(640,100)" to="(650,100)"/>
+    
+    <!-- Segundos Decena -->
+    <wire from="(265,100)" to="(710,100)"/>
+    <wire from="(710,100)" to="(720,100)"/>
+    
+    <!-- Minutos Unidad -->
+    <wire from="(215,180)" to="(640,180)"/>
+    <wire from="(640,180)" to="(650,180)"/>
+    
+    <!-- Minutos Decena -->
+    <wire from="(265,180)" to="(710,180)"/>
+    <wire from="(710,180)" to="(720,180)"/>
+    
+    <!-- Horas Unidad -->
+    <wire from="(215,260)" to="(640,260)"/>
+    <wire from="(640,260)" to="(650,260)"/>
+    
+    <!-- Horas Decena -->
+    <wire from="(265,260)" to="(710,260)"/>
+    <wire from="(710,260)" to="(720,260)"/>
+    
+  </circuit>
+</project>
